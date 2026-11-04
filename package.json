@@ -1,0 +1,13 @@
+{
+  "name": "uptime-monitor",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Checks my sites every 5 minutes with GitHub Actions and shows their status on a page.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "William's sites",
+  "repo": "williamchan24/uptime-monitor",
+  "sites": [
+    { "id": "portfolio", "name": "Portfolio", "url": "https://www.williamchanwinghong.com/", "expect": "William Chan" },
+    { "id": "nextform", "name": "Nextform Studios", "url": "https://www.nextformstudios.dev/", "expect": "Nextform" },
+    { "id": "brandon", "name": "Brandon Chan", "url": "https://williamchan24.github.io/brandon-chan-site/", "expect": "Brandon Chan" },
+    { "id": "shuttle-score", "name": "Shuttle Score", "url": "https://williamchan24.github.io/shuttle-score/", "expect": "Shuttle Score" },
+    { "id": "split-bill", "name": "SplitBill", "url": "https://williamchan24.github.io/split-bill/" },
+    { "id": "makan-picker", "name": "Makan Picker", "url": "https://williamchan24.github.io/makan-picker/" },
+    { "id": "kl-now", "name": "KL Now", "url": "https://williamchan24.github.io/kl-now/" }
+  ]
+}

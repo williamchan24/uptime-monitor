@@ -1,0 +1,53 @@
+# Checks every site every 5 minutes and saves the results to the `data` branch,
+# which the status page reads. The data branch is kept to a single commit (force-pushed),
+# so the repo doesn't grow with every check.
+name: Check sites
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # GitHub may run this a few minutes late when it's busy
+  workflow_dispatch:         # lets you run a check by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Get the previous results
+        run: |
+          if git ls-remote --exit-code --heads origin data > /dev/null; then
+            git fetch --depth 1 origin data
+            mkdir -p data && git --work-tree=data checkout origin/data -- .
+          else
+            mkdir -p data
+          fi
+
+      - name: Check every site
+        run: node scripts/check.mjs
+        env:
+          DATA_DIR: data
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Save the results to the data branch
+        run: |
+          cd data
+          git init -q -b data
+          git config user.name "uptime-monitor"
+          git config user.email "uptime-monitor@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Results $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data

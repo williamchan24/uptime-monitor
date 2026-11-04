@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status</title>
+<meta name="description" content="Live status and uptime of my sites, checked every 5 minutes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%2322a06b'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <h1 id="title">Status</h1>
+    <p class="checked" id="checked">Loading…</p>
+  </header>
+
+  <section class="summary" id="summary" aria-live="polite"></section>
+
+  <section aria-labelledby="sites-head">
+    <h2 id="sites-head" class="visually-hidden">Sites</h2>
+    <ol class="sites" id="sites"></ol>
+  </section>
+
+  <section class="incidents" aria-labelledby="inc-head">
+    <h2 id="inc-head">Incidents, last 7 days</h2>
+    <ol id="incidents"></ol>
+  </section>
+
+  <footer class="foot">Checked every 5 minutes by GitHub Actions. The page refreshes itself every minute.</footer>
+</main>
+
+<template id="site-row">
+  <li class="site">
+    <div class="site-main">
+      <a class="site-name" target="_blank" rel="noopener"></a>
+      <span class="pill"></span>
+    </div>
+    <dl class="stats">
+      <div><dt>Response</dt><dd data-ms></dd></div>
+      <div><dt>24 h</dt><dd data-u24></dd></div>
+      <div><dt>7 days</dt><dd data-u7></dd></div>
+    </dl>
+    <div class="bars" role="img"></div>
+  </li>
+</template>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
