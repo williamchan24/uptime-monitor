@@ -1,5 +1,7 @@
 # Uptime Monitor
 
+**Live status page: [williamchan24.github.io/uptime-monitor](https://williamchan24.github.io/uptime-monitor/)**
+
 Checks my sites every 5 minutes, shows their status and uptime on a page, and messages me on Telegram when one goes down or comes back. It runs entirely on GitHub for free: no server, no database, no dependencies.
 
 ## How it works
